@@ -3,6 +3,7 @@ module.exports = {
     title: `Hyungjun Kim`,
     description: `A portfolio webpage of Hyungjun Kim a frontend developer`,
     author: `@rilakkim`,
+    googleSiteVerification: `KE_WKT9NY5_rhqb8cI3rSQcSluoPODsJ2YP2kJLhZDY`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
