@@ -1,74 +1,93 @@
-import React from "react"
-import Work from "../components/work"
-import SnsLinks from "../components/snsLinks"
-
+import React, { useEffect } from "react"
+import Prism from "prismjs"
 import { rhythm } from "../utils/typography"
-import ProfileImage from "../images/profile.png"
-import LogoContorionImage from "../images/logo-contorion.png"
-import LogoSdsImage from "../images/logo-sds.png"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import SnsLinks from "../components/snsLinks"
 
-const controionListItems = [`TypeScript, SCSS, Gulp, Webpack`, `Responsive design`, `Mobile performance optimization`];
-const efssListItems = [`Implemented file storage UI.`, `AngularJS, React, Grunt, Gulp, Webpack.`, `Web performance optimization`];
+import ProfileImage from "../images/profile.png"
 
-const IndexPage = () => (
-    <Layout>
-        <SEO title="Hyungjun Kim" />
+const thinkingCodingRepeat = `while (live) {
+    await 🤔;
+    new Code(☕️);
+    😎🍷++;
+}`;
 
-        <section style={{ minWidth: `700px`, margin: rhythm(2) }}>
-            <div style={{ textAlign: `center`}}>
-                <h1>Hyungjun Kim</h1>
-            </div>
-            <div style={{ textAlign: `right`}}>
-                {`while (live) {\n
-                    await 🤔;\n
-                    new Code(☕️);\n
-                    😎🍷++;\n
-                 }`}
-            </div>
-        </section>
+const IntroSection = styled.section`
+    min-width: 320px;
+    margin: auto;
+`;
 
-        <section id="about" style={{ display: `flex`, minWidth: `700px`, margin: rhythm(2) }}>
-            <img src={ ProfileImage } alt="profile" width="234px" height="312px"/>
-            <div style={{ marginLeft: rhythm(1) }}>
+const ContentSection = styled.section`
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    margin: ${rhythm(2)};
+
+    @media only screen and (min-width: 720px) {
+        flex-direction: row;
+    }
+`;
+
+const ContactSection = styled(ContentSection)`
+    display: block;
+    text-align: center;
+`;
+
+const IndexPage = () => {
+    useEffect(() => {
+        Prism.highlightAll()
+    })
+
+    return (
+        <Layout>
+            <SEO title="Hyungjun Kim" />
+            <IntroSection>
+                <div style={{ textAlign: `center`, padding: `${rhythm(2)} 0`}}>
+                    <h1>Hyungjun Kim</h1>
+                    <hr></hr>
+                    <h3>A Front-end Developer</h3>
+                </div>
+                {/* <div className="code-container">
+                    <div>
+                        <pre>
+                            <code className="language-javascript">
+                                {thinkingCodingRepeat}
+                            </code>
+                        </pre>
+                    </div>
+                </div> */}
+            </IntroSection>
+
+            <ContentSection id="about">
+                <img style={{ margin: "0 auto" }} src={ ProfileImage } alt="profile" width="234px" height="312px"/>
+                <div style={{ margin: `${rhythm(1)}` }}>
+                    <p>
+                        Hello, my name is Hyungjun Kim.<br/>
+                        I’m a Front-end developer based on Berlin.🐻<br/>
+                    </p>
+                    <p>
+                        For the past 6+ years,<br/>
+                        I have explored the exciting web development universe. 🚀
+                    </p>
+                    <p>
+                        Web is not perfect, it never will be.<br/>
+                        But I'm very glad to be a part of progress that make it better.
+                    </p>
+                </div>
+            </ContentSection>
+
+            <ContactSection id="contacts">
                 <p>
-                    Hello, my name is Hyungjun Kim.
-                    I’m a frontend developer based on Berlin.
+                    If you want to know more about me and my experiences<br/>
+                    You can find me here
                 </p>
-                <p>
-                    For the past few years, I have explored the chaotic but exciting web development universe.
-                    I have crafted web applications using AngularJS,  Angular, ReactJS, VueJS and VanillaJS.
-                </p>
-                <p>
-                    Web is not perfect, it never will be. But people keep challenging to make it better.
-                    I'm very glad to be a part of that progress.
-                </p>
-            </div>
-        </section>
-
-        <section id="works" style={{ minWidth: `700px`, margin: rhythm(2) }}>
-            <Work title={`Contorion`}
-                  logo={LogoContorionImage}
-                  timePeriod={`2018 - now`}
-                  subTitle={`E-commerce for professional tools.`}
-                  listItems={controionListItems}>
-            </Work>
-            <Work title={`EFSS`}
-                  logo={LogoSdsImage}
-                  timePeriod={`2014 - 2017`}
-                  subTitle={`Enterprise collaboration web app.`}
-                  listItems={efssListItems}>
-            </Work>
-        </section>
-
-        <section id="contacts" style={{ minWidth: `700px`, margin: rhythm(2), textAlign: "center" }}>
-            <p>If you want to know more about me and my experiences
-                You can find me here</p>
-            <SnsLinks></SnsLinks>
-        </section>
-  </Layout>
-);
+                <SnsLinks></SnsLinks>
+            </ContactSection>
+        </Layout>
+    )
+}
 
 export default IndexPage

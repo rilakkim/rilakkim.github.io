@@ -1,6 +1,8 @@
 import Typography from "typography"
-import parnassusTheme from 'typography-theme-parnassus'
+import stowLakeTheme from 'typography-theme-stow-lake'
 
-const typography = new Typography(parnassusTheme);
-export const { scale, rhythm, options } = typography;
+const typography = new Typography(stowLakeTheme);
+
+// Export helper functions
+export const { scale, rhythm, options } = typography
 export default typography

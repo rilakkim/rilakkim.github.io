@@ -6,17 +6,17 @@ import IconGithub from "../images/icons/icon-github.png";
 
 const SnsLinks = () => (
     <div style={{ margin: "0 auto" }}>
-        <a href="https://www.linkedin.com/in/hyungjun-kim-a87746113/" target="_blank">
-            <img src={IconLinkedIn}/>
+        <a href="https://www.linkedin.com/in/hyungjun-kim-a87746113/" target="_blank" rel="noopener noreferrer">
+            <img src={IconLinkedIn} alt="linked in icon"/>
         </a>
-        <a href="https://twitter.com/JuneKimDev" target="_blank">
-            <img src={IconTwitter}/>
+        <a href="https://twitter.com/JuneKimDev" target="_blank" rel="noopener noreferrer">
+            <img src={IconTwitter} alt="twitter icon"/>
         </a>
-        <a href="https://www.instagram.com/rilakkim/" target="_blank">
-            <img src={IconInstagram}/>
+        <a href="https://www.instagram.com/rilakkim/" target="_blank" rel="noopener noreferrer">
+            <img src={IconInstagram} alt="instagram icon"/>
         </a>
-        <a href="https://github.com/rilakkim" target="_blank">
-            <img src={IconGithub}/>
+        <a href="https://github.com/rilakkim" target="_blank" rel="noopener noreferrer">
+            <img src={IconGithub} alt="github icon"/>
         </a>
     </div>
 )
