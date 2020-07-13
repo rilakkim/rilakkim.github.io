@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { rhythm } from "../utils/typography"
 
 import IconLinkedIn from "../images/svg/icon-linkedin.svg"
 import IconGithub from "../images/svg/icon-github.svg"

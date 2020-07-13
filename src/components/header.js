@@ -1,23 +1,33 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import { rhythm } from "../utils/typography"
 import styled from "styled-components"
+
+import { rhythm } from "../utils/typography"
 
 import SmallLogo from "../images/svg/small-logo.svg"
 
 const StyledHeader = styled.header`
   position: fixed;
+  display: flex;
   background-color: white;
   width: 100%;
+  min-width: 320px;
   max-width: 960px;
   margin: 0 auto;
-  padding: ${rhythm(1)};
+  padding: ${rhythm(0.25)} ${rhythm(1)};
+
+  @media only screen and (min-width: 720px) {
+    padding: ${rhythm(0.5)} ${rhythm(1)};
+  }
 `;
 
 const Nav = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   list-style: none;
-  float: right;
 `;
 
 const Header = ({ siteTitle }) => (

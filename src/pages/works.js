@@ -22,7 +22,7 @@ const Works = () => {
                 <Work title={`Contorion`}
                     logo={LogoContorionImage}
                     timePeriod={`Feb. 2018 - Present`}
-                    subTitle={`Developed and maintained apps of an e-commerce business.`}
+                    subTitle={`Developed and maintained applications of e-commerce business.`}
                     listItems={controionListItems}>
                 </Work>
                 <Divider margin="2"/>
