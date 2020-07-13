@@ -1,15 +1,32 @@
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
+const StyledWork = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    padding: 0 ${rhythm(1)};
+    margin: ${rhythm(1)} auto;
+
+    @media only screen and (min-width: 720px) {
+        flex-direction: row;
+    }
+`;
+
+const Col = styled.div`
+    margin: 0 ${rhythm(2)};
+`;
+
 const Work = ({ logo, title, timePeriod, subTitle, listItems }) => (
-    <div style={{ display: 'flex', marginBottom: rhythm(1) }}>
-        <div>
+    <StyledWork>
+        <Col>
             <img src={logo} alt={title}/>
-        </div>
-        <div style={{ marginLeft: rhythm(1) }}>
+        </Col>
+        <Col style={{ marginLeft: rhythm(1) }}>
             <h3>{ title }</h3>
-            <h5>({ timePeriod })</h5>
+            <p>({ timePeriod })</p>
             <p>{ subTitle }</p>
             <ul>
                 {
@@ -18,8 +35,8 @@ const Work = ({ logo, title, timePeriod, subTitle, listItems }) => (
                     })
                 }
             </ul>
-        </div>
-    </div>
+        </Col>
+    </StyledWork>
 )
 
 Work.propTypes = {

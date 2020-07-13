@@ -1,5 +1,4 @@
-import React, { useEffect } from "react"
-import Prism from "prismjs"
+import React from "react"
 import { rhythm } from "../utils/typography"
 import styled from "styled-components"
 
@@ -9,12 +8,6 @@ import SnsLinks from "../components/snsLinks"
 
 import ProfileImage from "../images/profile.png"
 
-const thinkingCodingRepeat = `while (live) {
-    await 🤔;
-    new Code(☕️);
-    😎🍷++;
-}`;
-
 const IntroSection = styled.section`
     min-width: 320px;
     margin: auto;
@@ -23,8 +16,10 @@ const IntroSection = styled.section`
 const ContentSection = styled.section`
     display: flex;
     flex-direction: column;
+    width: 100%;
     min-width: 320px;
-    margin: ${rhythm(2)};
+    padding: 0 ${rhythm(1)};
+    margin: ${rhythm(1)} 0;
 
     @media only screen and (min-width: 720px) {
         flex-direction: row;
@@ -36,29 +31,21 @@ const ContactSection = styled(ContentSection)`
     text-align: center;
 `;
 
+const Divider = styled.hr`
+    margin: ${props => rhythm(props.margin || 1)} 0;
+`
+
 const IndexPage = () => {
-    useEffect(() => {
-        Prism.highlightAll()
-    })
 
     return (
         <Layout>
             <SEO title="Hyungjun Kim" />
             <IntroSection>
-                <div style={{ textAlign: `center`, padding: `${rhythm(2)} 0`}}>
+                <div style={{ textAlign: `center`, padding: `${rhythm(1)} 0`}}>
                     <h1>Hyungjun Kim</h1>
-                    <hr></hr>
+                    <Divider/>
                     <h3>A Front-end Developer</h3>
                 </div>
-                {/* <div className="code-container">
-                    <div>
-                        <pre>
-                            <code className="language-javascript">
-                                {thinkingCodingRepeat}
-                            </code>
-                        </pre>
-                    </div>
-                </div> */}
             </IntroSection>
 
             <ContentSection id="about">
@@ -78,6 +65,8 @@ const IndexPage = () => {
                     </p>
                 </div>
             </ContentSection>
+
+            <Divider margin="2"/>
 
             <ContactSection id="contacts">
                 <p>

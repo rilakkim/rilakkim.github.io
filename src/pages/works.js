@@ -8,10 +8,10 @@ import LogoContorionImage from "../images/logo-contorion.png"
 import LogoSdsImage from "../images/logo-sds.png"
 
 const controionListItems = [`TypeScript, SCSS, Gulp, Webpack`, `Responsive design`, `Mobile performance optimization`];
-const efssListItems = [`Implemented file storage UI.`, `AngularJS, React, Grunt, Gulp, Webpack.`, `Web performance optimization`];
+const efssListItems = [`AngularJS, React, Grunt, Gulp, Webpack`, `Implemented file storage API`, , `Web performance optimization`];
 const WorksSection = styled.div`
     min-width: 700px;
-    margin: ${rhythm(2)};
+    margin: ${rhythm(2)} auto;
 `;
 
 const Works = () => {
@@ -21,13 +21,13 @@ const Works = () => {
                 <Work title={`Contorion`}
                     logo={LogoContorionImage}
                     timePeriod={`Feb. 2018 - Present`}
-                    subTitle={`E-commerce for professional tools.`}
+                    subTitle={`Developed and maintained apps of an e-commerce business.`}
                     listItems={controionListItems}>
                 </Work>
                 <Work title={`EFSS`}
                     logo={LogoSdsImage}
                     timePeriod={`2014 - 2017`}
-                    subTitle={`Enterprise collaboration web app.`}
+                    subTitle={`Built enterprise collaboration web applications.`}
                     listItems={efssListItems}>
                 </Work>
             </WorksSection>

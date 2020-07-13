@@ -2,4 +2,10 @@ https://rilakkim.github.io
 
 built with gatsby
 
-npm start
+to run dev server
+
+- npm start 
+
+to deploy
+
+- npm deploy

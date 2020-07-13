@@ -1,24 +1,43 @@
-import React from "react";
-import IconLinkedIn from "../images/icons/icon-linkedin.png";
-import IconTwitter from "../images/icons/icon-twitter.png";
-import IconInstagram from "../images/icons/icon-instagram.png";
-import IconGithub from "../images/icons/icon-github.png";
+import React from "react"
+import styled from "styled-components"
+import { rhythm } from "../utils/typography"
 
+import IconLinkedIn from "../images/svg/icon-linkedin.svg"
+import IconGithub from "../images/svg/icon-github.svg"
+import IconTwitter from "../images/svg/icon-twitter.svg"
+import IconInstagram from "../images/svg/icon-instagram.svg"
+
+const StyledSnsLinks = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const StyledSocialIcon = styled.a`
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin: 0 10px;
+`
+    
 const SnsLinks = () => (
-    <div style={{ margin: "0 auto" }}>
-        <a href="https://www.linkedin.com/in/hyungjun-kim-a87746113/" target="_blank" rel="noopener noreferrer">
-            <img src={IconLinkedIn} alt="linked in icon"/>
-        </a>
-        <a href="https://twitter.com/JuneKimDev" target="_blank" rel="noopener noreferrer">
-            <img src={IconTwitter} alt="twitter icon"/>
-        </a>
-        <a href="https://www.instagram.com/rilakkim/" target="_blank" rel="noopener noreferrer">
-            <img src={IconInstagram} alt="instagram icon"/>
-        </a>
-        <a href="https://github.com/rilakkim" target="_blank" rel="noopener noreferrer">
-            <img src={IconGithub} alt="github icon"/>
-        </a>
-    </div>
+    <StyledSnsLinks>
+        <StyledSocialIcon href="https://www.linkedin.com/in/hyungjun-kim-a87746113/" 
+           target="_blank">
+            <IconLinkedIn></IconLinkedIn>
+        </StyledSocialIcon>
+        <StyledSocialIcon href="https://github.com/rilakkim"
+           target="_blank">
+            <IconGithub width="30"></IconGithub>
+        </StyledSocialIcon>
+        <StyledSocialIcon href="https://twitter.com/JuneKimDev"
+           target="_blank">
+            <IconTwitter width="30"></IconTwitter>
+        </StyledSocialIcon>
+        <StyledSocialIcon href="https://www.instagram.com/rilakkim/"
+           target="_blank">
+            <IconInstagram width="30"></IconInstagram>
+        </StyledSocialIcon>
+    </StyledSnsLinks>
 )
 
 export default SnsLinks;
