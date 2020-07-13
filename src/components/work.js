@@ -7,16 +7,22 @@ const StyledWork = styled.div`
     display: flex;
     flex-direction: column;
     min-width: 320px;
-    padding: 0 ${rhythm(1)};
-    margin: ${rhythm(1)} auto;
-
+    margin : 0 auto;
+    
     @media only screen and (min-width: 720px) {
         flex-direction: row;
+        margin: ${rhythm(1)} auto;
     }
 `;
 
 const Col = styled.div`
-    margin: 0 ${rhythm(2)};
+    margin: 0 auto;
+    padding: 0;
+    
+    @media only screen and (min-width: 720px) {
+        margin: 0 ${rhythm(1)};
+        padding: 0 ${rhythm(1)};
+    }
 `;
 
 const Work = ({ logo, title, timePeriod, subTitle, listItems }) => (

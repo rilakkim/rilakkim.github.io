@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Divider from "../components/divider"
 import SnsLinks from "../components/snsLinks"
 
 import ProfileImage from "../images/profile.png"
@@ -31,12 +32,7 @@ const ContactSection = styled(ContentSection)`
     text-align: center;
 `;
 
-const Divider = styled.hr`
-    margin: ${props => rhythm(props.margin || 1)} 0;
-`
-
 const IndexPage = () => {
-
     return (
         <Layout>
             <SEO title="Hyungjun Kim" />
