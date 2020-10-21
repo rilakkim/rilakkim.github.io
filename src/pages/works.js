@@ -1,5 +1,4 @@
 import React from 'react';
-import { rhythm } from "../utils/typography"
 import styled from "styled-components";
 
 import Layout from "../components/layout"
@@ -12,7 +11,6 @@ const controionListItems = [`TypeScript, SCSS, Gulp, Webpack`, `Responsive desig
 const efssListItems = [`AngularJS, React, Grunt, Gulp, Webpack`, `Implemented file storage API`, `Web performance optimization`];
 const WorksSection = styled.div`
     min-width: 320px;
-    margin: ${rhythm(2)} auto;
 `;
 
 const Works = () => {

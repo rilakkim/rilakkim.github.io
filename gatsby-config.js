@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Hyungjun Kim`,
-    description: `A portfolio webpage of Hyungjun Kim a frontend developer`,
+    description: `A portfolio webpage of Hyungjun Kim`,
     author: `@rilakkim`,
     googleSiteVerification: `KE_WKT9NY5_rhqb8cI3rSQcSluoPODsJ2YP2kJLhZDY`,
   },
@@ -15,12 +15,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
       },
     },
     {
@@ -43,5 +37,13 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Alegreya Sans:400,700,800', 'Damascus']
+        }
+      }
+    }
   ],
 }

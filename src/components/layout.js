@@ -1,9 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
-import Header from "./header"
 import "./layout.css"
 
 const LayoutContainer = styled.div`
@@ -12,35 +10,23 @@ const LayoutContainer = styled.div`
 `;
 
 const Main = styled.main`
-  padding-top: 90px;
+  font-family: 'Alegreya Sans'
 `;
 
 const StyledFooter = styled.footer`
+  padding: 12px;
+  font-family: 'Alegreya Sans';
   text-align: center;
-  color: darkgrey;
+  color: grey;
 `;
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <>
       <LayoutContainer>
-        <Header siteTitle={data.site.siteMetadata.title} />
         <Main>{children}</Main>
         <StyledFooter>
-          <small>
-            © {new Date().getFullYear()}, With special thanks to Sunjung Park<br/>
-            Designed & Developed by Hyungjun Kim
-          </small>
+          © {new Date().getFullYear()}, Designed & Developed by Hyungjun Kim
         </StyledFooter>
       </LayoutContainer>
     </>

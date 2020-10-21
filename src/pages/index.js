@@ -1,78 +1,87 @@
-import React from "react"
-import { rhythm } from "../utils/typography"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import SnsLinks from "../components/snsLinks";
+import Colors from "../constants/colors";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Divider from "../components/divider"
-import SnsLinks from "../components/snsLinks"
-
-import ProfileImage from "../images/profile.png"
-
-const IntroSection = styled.section`
-    min-width: 320px;
-    margin: auto;
+const StyledSection = styled.section`
+  display: flex;
+  height: 70vh;
 `;
 
-const ContentSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-width: 320px;
-    padding: 0 ${rhythm(1)};
-    margin: ${rhythm(1)} 0;
-
-    @media only screen and (min-width: 720px) {
-        flex-direction: row;
-    }
-`;
-
-const ContactSection = styled(ContentSection)`
-    display: block;
-    text-align: center;
-`;
+const StyledTextContainer = styled.div`
+  width: 640px;
+  padding: 20px;
+  margin: auto;
+  font-size: 24px;
+`
 
 const IndexPage = () => {
-    return (
-        <Layout>
-            <SEO title="Hyungjun Kim" />
-            <IntroSection>
-                <div style={{ textAlign: `center`, padding: `${rhythm(1)} 0`}}>
-                    <h1>Hyungjun Kim</h1>
-                    <Divider/>
-                    <h3>A Front-end Developer</h3>
-                </div>
-            </IntroSection>
+  return (
+    <Layout>
+      <SEO title="Hyungjun Kim" />
+      <StyledSection id="intro">
+        <div
+          style={{
+            display: "flex",
+            alignSelf: "center",
+            justifyContent: `center`,
+            width: `100%`,
+          }}
+        >
+          <div
+            style={{
+              display: `flex`,
+              justifyContent: `flex-end`,
+              alignItems: `flex-end`,
+              width: `560px`,
+              height: `365px`,
+              padding: "0 20px",
+              backgroundColor: Colors.black,
+              color: Colors.white,
+              zIndex: 2,
+            }}
+          >
+            <h1
+              style={{
+                fontSize: `64px`,
+                fontWeight: `600`,
+                textAlign: `right`,
+              }}
+            >
+              HYUNGJUN
+              <br />
+              KIM
+            </h1>
+          </div>
+          <div
+            style={{
+              width: `630px`,
+              height: `365px`,
+              marginLeft: `-560px`,
+              marginTop: `70px`,
+              top: `50px`,
+              left: `0`,
+              backgroundColor: Colors.shadow,
+              zIndex: 1,
+            }}
+          ></div>
+        </div>
+      </StyledSection>
 
-            <ContentSection id="about">
-                <img style={{ margin: "0 auto" }} src={ ProfileImage } alt="profile" width="234px" height="312px"/>
-                <div style={{ margin: `${rhythm(1)}` }}>
-                    <p>
-                        Hello, my name is Hyungjun Kim.<br/>
-                        I’m a Front-end developer based on Berlin.🐻<br/>
-                    </p>
-                    <p>
-                        For the past 6+ years,<br/>
-                        I have explored the exciting web development universe. 🚀
-                    </p>
-                    <p>
-                        Web is not perfect, it never will be.<br/>
-                        But I'm very glad to be a part of progress that make it better.
-                    </p>
-                </div>
-            </ContentSection>
+      <StyledSection id="about">
+        <StyledTextContainer>
+          <h2>Hi there, <span role="img" aria-label="smile">😄</span> <br/>I'm a Front-end developer based in Berlin.</h2>
+          <p>I've been working in the web development industry for 6 years and I'm still delighted to be here!</p>
+          <p>After studying literature and politics, I wanted to learn more practical skills. So I jumped into software engineering and started my career at <strong>Samsung</strong> as a software engineer.</p>
+          <p>To expand my horizons, I moved from Seoul to Berlin. Traveled lots of countries and learned different languages to survive in different culture. Currently, I'm working at <strong>Contorion</strong> as a Front-end developer since 2018.</p>
+          <p>My journey continues because I want to discover more about the world. <span role="img" aria-label="earth">🌏</span> If you want to know more about my story, you can find me here.</p>
+          <SnsLinks></SnsLinks>
+        </StyledTextContainer>  
+      </StyledSection>
+    </Layout>
+  );
+};
 
-            <Divider margin="2"/>
-
-            <ContactSection id="contacts">
-                <p>
-                    If you want to know more about me and my experiences<br/>
-                    You can find me here
-                </p>
-                <SnsLinks></SnsLinks>
-            </ContactSection>
-        </Layout>
-    )
-}
-
-export default IndexPage
+export default IndexPage;
