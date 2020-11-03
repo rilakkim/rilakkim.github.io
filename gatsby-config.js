@@ -41,7 +41,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Alegreya Sans:400,700,800', 'Damascus']
+          families: ['Eczar:400,800', 'Roboto Mono:400']
         }
       }
     }
