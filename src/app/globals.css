@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
+@theme {
+  --font-montserrat: var(--font-montserrat);
+  --font-playfair: var(--font-playfair);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg-deep: #000108;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-deep);
+  cursor: crosshair;
+}
+
+/* -------------------------------------------
+   1. Organic Irregular Glow Effect
+   ------------------------------------------- */
+.glow-shape {
+  /* Uses radial gradients to create the 70% dark / 30% light balance */
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      rgba(240, 255, 255, 0.9) 0%,
+      rgba(0, 200, 255, 0.8) 10%,
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 120, 220, 0.6) 0%,
+      rgba(0, 15, 80, 0.9) 30%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 5, 30, 0.95) 0%,
+      transparent 100%
+    );
+  background-size:
+    150% 150%,
+    200% 200%,
+    180% 180%;
+  background-repeat: no-repeat;
+  /* Applies the SVG noise filter for the irregular edge */
+  filter: url(#organic-edge);
+  animation: undulate 15s infinite alternate ease-in-out;
+}
+
+/* Animation for the floating/breathing background effect */
+@keyframes undulate {
+  0% {
+    background-position:
+      100% 0%,
+      100% 50%,
+      100% 100%;
+    transform: scale(1) translateY(0) skewY(0deg);
+  }
+
+  50% {
+    background-position:
+      80% 10%,
+      90% 40%,
+      85% 90%;
+    transform: scale(1.05) translateY(-2%) skewY(-1deg);
+  }
+
+  100% {
+    background-position:
+      95% 20%,
+      75% 60%,
+      90% 80%;
+    transform: scale(1.1) translateY(-3%) skewY(-2deg);
+  }
+}
+
+/* -------------------------------------------
+   2. High-Resolution Film Grain Overlay
+   ------------------------------------------- */
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  mix-blend-mode: overlay;
+  /* Small tiled noise for high-definition texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  z-index: 50;
 }
