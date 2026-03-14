@@ -5,57 +5,10 @@ import { useEffect } from "react";
 import { useMouseDynamics } from "@/hooks/useMouseDynamics";
 
 export default function Home() {
-  const { glowX, glowY, textShadow, requestGyroPermission } = useMouseDynamics();
+  const { textShadow } = useMouseDynamics();
 
   return (
-    <div
-      className="h-screen w-screen overflow-hidden flex items-center justify-center"
-      onClick={requestGyroPermission}
-      onTouchStart={requestGyroPermission}
-    >
-      {/* SVG Displacement Filter for organic edges */}
-      <svg width="0" height="0" className="absolute z-[-1]" aria-hidden="true">
-        <defs>
-          <filter
-            id="organic-edge"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.0025"
-              numOctaves="3"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="250"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-
-
-      {/* Parallax Background Wrapper */}
-      <div
-        id="parallax-wrapper"
-        className="fixed -inset-[5%] w-[110vw] h-[110vh] z-0 pointer-events-none"
-      >
-        <motion.div
-          id="glow-container"
-          className="absolute inset-0 blur-[60px] md:blur-[100px] will-change-transform"
-          style={{ x: glowX, y: glowY }}
-        >
-          <div className="glow-shape absolute -top-[20vh] right-0 w-[55vw] h-[140vh]"></div>
-        </motion.div>
-      </div>
-
+    <div className="h-[100svh] w-full flex items-center justify-center">
       {/* Main Content Container */}
       <div className="container relative z-[5] select-none flex flex-col items-center md:items-start w-full px-8 md:px-0 md:w-[80%] max-w-[1200px]">
         <motion.h1

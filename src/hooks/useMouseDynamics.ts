@@ -51,9 +51,9 @@ export function useMouseDynamics(intensityMultiplier: number = 1) {
         const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
             if (e.gamma === null || e.beta === null) return;
             isInteracting = true;
-            // 모바일에서는 움직임 범위를 25%로 축소
-            const x = Math.min(Math.max(e.gamma / 45, -1), 1) * 0.25;
-            const y = Math.min(Math.max((e.beta - 45) / 45, -1), 1) * 0.25;
+            // 모바일에서는 움직임 범위를 50%로 설정 (기존 25% 대비 효과 2배)
+            const x = Math.min(Math.max(e.gamma / 45, -1), 1) * 0.5;
+            const y = Math.min(Math.max((e.beta - 45) / 45, -1), 1) * 0.5;
             mouseX.set(x);
             mouseY.set(y);
             startAutoAnimationAfterDelay();
