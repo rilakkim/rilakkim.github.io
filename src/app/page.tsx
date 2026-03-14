@@ -5,10 +5,14 @@ import { useEffect } from "react";
 import { useMouseDynamics } from "@/hooks/useMouseDynamics";
 
 export default function Home() {
-  const { glowX, glowY, textShadow } = useMouseDynamics();
+  const { glowX, glowY, textShadow, requestGyroPermission } = useMouseDynamics();
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex items-center justify-center">
+    <div
+      className="h-screen w-screen overflow-hidden flex items-center justify-center"
+      onClick={requestGyroPermission}
+      onTouchStart={requestGyroPermission}
+    >
       {/* SVG Displacement Filter for organic edges */}
       <svg width="0" height="0" className="absolute z-[-1]" aria-hidden="true">
         <defs>
