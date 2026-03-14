@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import Navigation from "@/components/Navigation";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -27,8 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
+        className={`${montserrat.variable} ${playfairDisplay.variable} antialiased overflow-x-hidden`}
       >
+        <AnimatedBackground />
         <Navigation />
         {children}
       </body>

@@ -26,7 +26,7 @@ export default function Projects() {
     const { textShadow } = useMouseDynamics(0.5);
 
     return (
-        <div className="min-h-screen w-full flex flex-col items-center bg-[#000108] text-white pt-20 md:pt-32 font-montserrat">
+        <div className="min-h-[100svh] w-full flex flex-col items-center text-white pt-20 md:pt-32 font-montserrat">
 
 
             <div className="w-full px-8 md:px-0 md:w-[80%] max-w-[1200px] flex flex-col md:items-start mt-10">
