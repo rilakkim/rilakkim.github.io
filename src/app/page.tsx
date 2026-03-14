@@ -61,17 +61,9 @@ export default function Home() {
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.0025"
-              numOctaves="4"
+              numOctaves="3"
               result="noise"
-            >
-              {/* Animates the base frequency to simulate liquid movement */}
-              <animate
-                attributeName="baseFrequency"
-                values="0.0025;0.0035;0.0025"
-                dur="20s"
-                repeatCount="indefinite"
-              />
-            </feTurbulence>
+            />
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
@@ -108,7 +100,7 @@ export default function Home() {
       >
         <motion.div
           id="glow-container"
-          className="absolute inset-0 blur-[100px] will-change-transform"
+          className="absolute inset-0 blur-[60px] md:blur-[100px] will-change-transform"
           style={{ x: glowX, y: glowY }}
         >
           <div className="glow-shape absolute -top-[20vh] right-0 w-[55vw] h-[140vh]"></div>

@@ -20,35 +20,53 @@ body {
 .glow-shape {
   /* Uses radial gradients to create the 70% dark / 30% light balance */
   background-image:
-    radial-gradient(
-      ellipse at center,
+    radial-gradient(ellipse at center,
       rgba(240, 255, 255, 0.9) 0%,
       rgba(0, 200, 255, 0.8) 10%,
-      transparent 30%
-    ),
-    radial-gradient(
-      ellipse at center,
+      transparent 30%),
+    radial-gradient(ellipse at center,
       rgba(0, 120, 220, 0.6) 0%,
       rgba(0, 15, 80, 0.9) 30%,
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse at center,
+      transparent 75%),
+    radial-gradient(ellipse at center,
       rgba(0, 5, 30, 0.95) 0%,
-      transparent 100%
-    );
+      transparent 100%);
   background-size:
     150% 150%,
     200% 200%,
     180% 180%;
   background-repeat: no-repeat;
-  /* Applies the SVG noise filter for the irregular edge */
-  filter: url(#organic-edge);
-  animation: undulate 15s infinite alternate ease-in-out;
+
+  /* Lighter animation for all devices by default */
+  animation: undulate-mobile 15s infinite alternate ease-in-out;
+  will-change: transform;
 }
 
-/* Animation for the floating/breathing background effect */
-@keyframes undulate {
+/* Applies the SVG noise filter and heavier animation for larger screens */
+@media (min-width: 768px) {
+  .glow-shape {
+    filter: url(#organic-edge);
+    animation: undulate-desktop 15s infinite alternate ease-in-out;
+  }
+}
+
+/* Lightweight mobile animation (only transform) */
+@keyframes undulate-mobile {
+  0% {
+    transform: scale(1) translateY(0) skewY(0deg);
+  }
+
+  50% {
+    transform: scale(1.05) translateY(-2%) skewY(-1deg);
+  }
+
+  100% {
+    transform: scale(1.1) translateY(-3%) skewY(-2deg);
+  }
+}
+
+/* Heavy animation for the floating/breathing background effect */
+@keyframes undulate-desktop {
   0% {
     background-position:
       100% 0%,
