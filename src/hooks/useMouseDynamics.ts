@@ -106,5 +106,18 @@ export function useMouseDynamics(intensityMultiplier: number = 1) {
     `
     );
 
-    return { glowX, glowY, textShadow };
+    const requestGyroPermission = async () => {
+        if (typeof window !== "undefined" && typeof (window as any).DeviceOrientationEvent !== "undefined" && typeof (window.DeviceOrientationEvent as any).requestPermission === 'function') {
+            try {
+                const permissionState = await (window.DeviceOrientationEvent as any).requestPermission();
+                if (permissionState === 'granted') {
+                    console.log('Gyroscope permission granted');
+                }
+            } catch (error) {
+                console.error('Error requesting gyroscope permission:', error);
+            }
+        }
+    };
+
+    return { glowX, glowY, textShadow, requestGyroPermission };
 }
