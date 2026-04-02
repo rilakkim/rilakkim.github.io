@@ -96,14 +96,23 @@ export function useMouseDynamics(intensityMultiplier: number = 1) {
     // We use useTransform to compose a dynamic CSS text-shadow value based on mouse shift
     const textShadow = useTransform(
         [shiftX, shiftY],
-        ([sx, sy]: number[]) => `
-      ${4 - sx * 0.5}px ${sy * 0.5}px 6px rgba(59, 130, 246, 0.8),
-      ${12 - sx}px ${sy}px 25px rgba(0, 0, 255, 0.6),
-      ${-4 - sx * 0.5}px ${sy * 0.5}px 6px rgba(255, 220, 0, 0.8),
-      ${-12 - sx}px ${sy}px 25px rgba(255, 0, 0, 0.6),
+        ([sx, sy]: number[]) => {
+            // Optimization: Rounding to integer values avoids subpixel calculation during
+            // heavy browser CSS composites, delivering massive performance gains.
+            const rx1 = Math.round(sx * 0.5);
+            const ry1 = Math.round(sy * 0.5);
+            const rx2 = Math.round(sx);
+            const ry2 = Math.round(sy);
+
+            return `
+      ${4 - rx1}px ${ry1}px 6px rgba(59, 130, 246, 0.8),
+      ${12 - rx2}px ${ry2}px 25px rgba(0, 0, 255, 0.6),
+      ${-4 - rx1}px ${ry1}px 6px rgba(255, 220, 0, 0.8),
+      ${-12 - rx2}px ${ry2}px 25px rgba(255, 0, 0, 0.6),
       0px 10px 30px rgba(0, 0, 0, 0.95),
       0px 25px 70px rgba(0, 0, 0, 1)
-    `
+    `;
+        }
     );
 
     const requestGyroPermission = async () => {
