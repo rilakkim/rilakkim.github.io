@@ -19,6 +19,8 @@ body {
    1. Organic Irregular Glow Effect
    ------------------------------------------- */
 .glow-shape {
+  border-radius: 50%;
+  /* Base soft ellipse */
   /* Uses radial gradients to create the 70% dark / 30% light balance */
   background-image:
     radial-gradient(ellipse at center,
@@ -43,30 +45,32 @@ body {
   will-change: transform;
 }
 
-/* Applies the SVG noise filter and heavier animation for larger screens */
+/* Uses CSS border-radius morphing exclusively for high performance organic shapes */
 @media (min-width: 768px) {
   .glow-shape {
-    filter: url(#organic-edge);
     animation: undulate-desktop 15s infinite alternate ease-in-out;
   }
 }
 
-/* Lightweight mobile animation (only transform) */
+/* Lightweight mobile animation */
 @keyframes undulate-mobile {
   0% {
     transform: scale(1) translateY(0) skewY(0deg);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
   }
 
   50% {
     transform: scale(1.05) translateY(-2%) skewY(-1deg);
+    border-radius: 45% 55% 65% 35% / 45% 50% 60% 45%;
   }
 
   100% {
     transform: scale(1.1) translateY(-3%) skewY(-2deg);
+    border-radius: 55% 45% 35% 65% / 55% 40% 40% 55%;
   }
 }
 
-/* Heavy animation for the floating/breathing background effect */
+/* Organic blob morphing and floating background effect */
 @keyframes undulate-desktop {
   0% {
     background-position:
@@ -74,6 +78,7 @@ body {
       100% 50%,
       100% 100%;
     transform: scale(1) translateY(0) skewY(0deg);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
   }
 
   50% {
@@ -82,6 +87,7 @@ body {
       90% 40%,
       85% 90%;
     transform: scale(1.05) translateY(-2%) skewY(-1deg);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   }
 
   100% {
@@ -90,5 +96,6 @@ body {
       75% 60%,
       90% 80%;
     transform: scale(1.1) translateY(-3%) skewY(-2deg);
+    border-radius: 60% 40% 30% 70% / 50% 60% 50% 40%;
   }
 }
