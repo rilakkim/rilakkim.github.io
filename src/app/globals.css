@@ -16,11 +16,9 @@ body {
 }
 
 /* -------------------------------------------
-   1. Organic Irregular Glow Effect
+   1. Aurora Glow Effect (Original Colors, Extreme Squish)
    ------------------------------------------- */
 .glow-shape {
-  border-radius: 50%;
-  /* Base soft ellipse */
   /* Uses radial gradients to create the 70% dark / 30% light balance */
   background-image:
     radial-gradient(ellipse at center,
@@ -40,62 +38,39 @@ body {
     180% 180%;
   background-repeat: no-repeat;
 
-  /* Lighter animation for all devices by default */
-  animation: undulate-mobile 15s infinite alternate ease-in-out;
-  will-change: transform;
+  will-change: transform, border-radius;
+  animation: aurora-squish 40s infinite alternate ease-in-out;
 }
 
-/* Uses CSS border-radius morphing exclusively for high performance organic shapes */
-@media (min-width: 768px) {
-  .glow-shape {
-    animation: undulate-desktop 15s infinite alternate ease-in-out;
-  }
-}
-
-/* Lightweight mobile animation */
-@keyframes undulate-mobile {
+/* Centered, gentle squished blob morphing */
+@keyframes aurora-squish {
   0% {
-    transform: scale(1) translateY(0) skewY(0deg);
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+    transform: scale(1.2, 0.8) rotate(0deg);
+    background-position: 100% 0%, 100% 50%, 100% 100%;
+  }
+
+  25% {
+    border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%;
+    transform: scale(0.9, 1.1) rotate(2deg);
+    background-position: 80% 10%, 90% 40%, 85% 90%;
   }
 
   50% {
-    transform: scale(1.05) translateY(-2%) skewY(-1deg);
-    border-radius: 45% 55% 65% 35% / 45% 50% 60% 45%;
+    border-radius: 20% 80% 40% 60% / 60% 40% 80% 20%;
+    transform: scale(1.2, 0.85) rotate(-2deg);
+    background-position: 95% 20%, 75% 60%, 90% 80%;
+  }
+
+  75% {
+    border-radius: 80% 20% 70% 30% / 30% 70% 20% 80%;
+    transform: scale(0.95, 1.1) rotate(3deg);
+    background-position: 85% 30%, 85% 50%, 95% 70%;
   }
 
   100% {
-    transform: scale(1.1) translateY(-3%) skewY(-2deg);
-    border-radius: 55% 45% 35% 65% / 55% 40% 40% 55%;
-  }
-}
-
-/* Organic blob morphing and floating background effect */
-@keyframes undulate-desktop {
-  0% {
-    background-position:
-      100% 0%,
-      100% 50%,
-      100% 100%;
-    transform: scale(1) translateY(0) skewY(0deg);
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-  }
-
-  50% {
-    background-position:
-      80% 10%,
-      90% 40%,
-      85% 90%;
-    transform: scale(1.05) translateY(-2%) skewY(-1deg);
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  }
-
-  100% {
-    background-position:
-      95% 20%,
-      75% 60%,
-      90% 80%;
-    transform: scale(1.1) translateY(-3%) skewY(-2deg);
-    border-radius: 60% 40% 30% 70% / 50% 60% 50% 40%;
+    border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+    transform: scale(1.2, 0.8) rotate(0deg);
+    background-position: 100% 0%, 100% 50%, 100% 100%;
   }
 }
