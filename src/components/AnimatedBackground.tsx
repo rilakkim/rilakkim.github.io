@@ -32,33 +32,6 @@ export default function AnimatedBackground() {
 
     return (
         <>
-            {/* SVG Displacement Filter for organic edges */}
-            <svg width="0" height="0" className="fixed z-[-1]" aria-hidden="true">
-                <defs>
-                    <filter
-                        id="organic-edge"
-                        x="-20%"
-                        y="-20%"
-                        width="140%"
-                        height="140%"
-                    >
-                        <feTurbulence
-                            type="fractalNoise"
-                            baseFrequency="0.0025"
-                            numOctaves="3"
-                            result="noise"
-                        />
-                        <feDisplacementMap
-                            in="SourceGraphic"
-                            in2="noise"
-                            scale="250"
-                            xChannelSelector="R"
-                            yChannelSelector="G"
-                        />
-                    </filter>
-                </defs>
-            </svg>
-
             {/* Parallax Background Wrapper */}
             <div
                 id="parallax-wrapper"

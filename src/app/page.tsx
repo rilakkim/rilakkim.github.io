@@ -12,7 +12,7 @@ export default function Home() {
       {/* Main Content Container */}
       <div className="container relative z-[5] select-none flex flex-col items-center md:items-start w-full px-8 md:px-0 md:w-[80%] max-w-[1200px]">
         <motion.h1
-          className="flex flex-col items-center md:items-start text-[clamp(4rem,15vw,11rem)] landscape:text-[clamp(3rem,16vh,8rem)] font-playfair font-extrabold -tracking-[0.03em] mb-10 landscape:mb-4 text-white leading-[0.85] transition-[text-shadow] duration-100 ease-out"
+          className="flex flex-col items-center md:items-start text-[clamp(4rem,15vw,11rem)] landscape:text-[clamp(3rem,16vh,8rem)] font-playfair font-extrabold -tracking-[0.03em] mb-10 landscape:mb-4 text-white leading-[0.85]"
           style={{ textShadow }}
         >
           <span>Think</span>

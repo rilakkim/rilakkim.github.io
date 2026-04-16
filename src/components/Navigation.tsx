@@ -6,6 +6,11 @@ import { usePathname } from "next/navigation";
 export default function Navigation() {
     const pathname = usePathname();
 
+    // Hide navigation on app-specific pages
+    if (pathname?.startsWith("/apps/")) {
+        return null;
+    }
+
     const links = [
         { href: "/", label: "Home" },
         { href: "/about", label: "About" },

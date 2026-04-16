@@ -13,56 +13,64 @@ export function useMouseDynamics(intensityMultiplier: number = 1) {
     useEffect(() => {
         let animationFrameId: number;
         let isInteracting = false;
-        let interactionTimeout: NodeJS.Timeout;
         let time = 0;
+        let lastInteractionTime = 0;
 
-        // 모바일 등에서 터치나 기기 움직임이 없을 때 자동으로 재생될 애니메이션
-        const startAutoAnimationAfterDelay = () => {
-            clearTimeout(interactionTimeout);
-            interactionTimeout = setTimeout(() => {
-                isInteracting = false;
-            }, 2000); // 2초간 입력이 없으면 자연스럽게 자동 애니메이션(유영) 재개
+        // Cache window dimensions to prevent layout thrashing on every mouse move or frame
+        let winWidth = window.innerWidth;
+        let winHeight = window.innerHeight;
+        let isMobile = winWidth <= 768;
+
+        const handleResize = () => {
+            winWidth = window.innerWidth;
+            winHeight = window.innerHeight;
+            isMobile = winWidth <= 768;
         };
+        window.addEventListener("resize", handleResize, { passive: true });
 
         // 1. 마우스 이동 (데스크탑)
         const handleMouseMove = (e: MouseEvent) => {
             isInteracting = true;
-            const x = (e.clientX / window.innerWidth - 0.5) * 2;
-            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            lastInteractionTime = performance.now();
+            const x = (e.clientX / winWidth - 0.5) * 2;
+            const y = (e.clientY / winHeight - 0.5) * 2;
             mouseX.set(x);
             mouseY.set(y);
-            startAutoAnimationAfterDelay();
         };
 
         // 2. 화면 터치/스크롤 이동 (모바일)
         const handleTouchMove = (e: TouchEvent) => {
             isInteracting = true;
+            lastInteractionTime = performance.now();
             if (e.touches.length > 0) {
                 // 모바일에서는 움직임 범위를 25%로 축소
-                const x = ((e.touches[0].clientX / window.innerWidth - 0.5) * 2) * 0.25;
-                const y = ((e.touches[0].clientY / window.innerHeight - 0.5) * 2) * 0.25;
+                const x = ((e.touches[0].clientX / winWidth - 0.5) * 2) * 0.25;
+                const y = ((e.touches[0].clientY / winHeight - 0.5) * 2) * 0.25;
                 mouseX.set(x);
                 mouseY.set(y);
             }
-            startAutoAnimationAfterDelay();
         };
 
         // 3. 기기 기울임(자이로스코프) 적용 (모바일)
         const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
             if (e.gamma === null || e.beta === null) return;
             isInteracting = true;
+            lastInteractionTime = performance.now();
             // 모바일에서는 움직임 범위를 50%로 설정 (기존 25% 대비 효과 2배)
             const x = Math.min(Math.max(e.gamma / 45, -1), 1) * 0.5;
             const y = Math.min(Math.max((e.beta - 45) / 45, -1), 1) * 0.5;
             mouseX.set(x);
             mouseY.set(y);
-            startAutoAnimationAfterDelay();
         };
 
-        const animateAuto = () => {
-            time += 0.005;
-            if (!isInteracting) {
-                const isMobile = window.innerWidth <= 768;
+        const animateAuto = (timestamp: number) => {
+            if (isInteracting) {
+                // Check if 2 seconds have passed since last interaction without using costly setTimeout pools
+                if (timestamp - lastInteractionTime > 2000) {
+                    isInteracting = false;
+                }
+            } else {
+                time += 0.005;
                 const scale = isMobile ? 0.25 : 1;
                 mouseX.set(Math.sin(time) * scale);
                 mouseY.set(Math.cos(time * 0.8) * scale);
@@ -70,18 +78,18 @@ export function useMouseDynamics(intensityMultiplier: number = 1) {
             animationFrameId = requestAnimationFrame(animateAuto);
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
         window.addEventListener("touchmove", handleTouchMove, { passive: true });
         window.addEventListener("deviceorientation", handleDeviceOrientation);
 
-        animateAuto(); // 컴포넌트 마운트 시 자동 애니메이션 시작
+        animationFrameId = requestAnimationFrame(animateAuto); // 컴포넌트 마운트 시 자동 애니메이션 시작
 
         return () => {
+            window.removeEventListener("resize", handleResize);
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("touchmove", handleTouchMove);
             window.removeEventListener("deviceorientation", handleDeviceOrientation);
             cancelAnimationFrame(animationFrameId);
-            clearTimeout(interactionTimeout);
         };
     }, [mouseX, mouseY]);
 

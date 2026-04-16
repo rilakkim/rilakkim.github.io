@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-montserrat: var(--font-montserrat);
@@ -15,7 +16,7 @@ body {
 }
 
 /* -------------------------------------------
-   1. Organic Irregular Glow Effect
+   1. Aurora Glow Effect (Original Colors, Extreme Squish)
    ------------------------------------------- */
 .glow-shape {
   /* Uses radial gradients to create the 70% dark / 30% light balance */
@@ -37,57 +38,39 @@ body {
     180% 180%;
   background-repeat: no-repeat;
 
-  /* Lighter animation for all devices by default */
-  animation: undulate-mobile 15s infinite alternate ease-in-out;
-  will-change: transform;
+  will-change: transform, border-radius;
+  animation: aurora-squish 40s infinite alternate ease-in-out;
 }
 
-/* Applies the SVG noise filter and heavier animation for larger screens */
-@media (min-width: 768px) {
-  .glow-shape {
-    filter: url(#organic-edge);
-    animation: undulate-desktop 15s infinite alternate ease-in-out;
-  }
-}
-
-/* Lightweight mobile animation (only transform) */
-@keyframes undulate-mobile {
+/* Centered, gentle squished blob morphing */
+@keyframes aurora-squish {
   0% {
-    transform: scale(1) translateY(0) skewY(0deg);
+    border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+    transform: scale(1.2, 0.8) rotate(0deg);
+    background-position: 100% 0%, 100% 50%, 100% 100%;
+  }
+
+  25% {
+    border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%;
+    transform: scale(0.9, 1.1) rotate(2deg);
+    background-position: 80% 10%, 90% 40%, 85% 90%;
   }
 
   50% {
-    transform: scale(1.05) translateY(-2%) skewY(-1deg);
+    border-radius: 20% 80% 40% 60% / 60% 40% 80% 20%;
+    transform: scale(1.2, 0.85) rotate(-2deg);
+    background-position: 95% 20%, 75% 60%, 90% 80%;
+  }
+
+  75% {
+    border-radius: 80% 20% 70% 30% / 30% 70% 20% 80%;
+    transform: scale(0.95, 1.1) rotate(3deg);
+    background-position: 85% 30%, 85% 50%, 95% 70%;
   }
 
   100% {
-    transform: scale(1.1) translateY(-3%) skewY(-2deg);
-  }
-}
-
-/* Heavy animation for the floating/breathing background effect */
-@keyframes undulate-desktop {
-  0% {
-    background-position:
-      100% 0%,
-      100% 50%,
-      100% 100%;
-    transform: scale(1) translateY(0) skewY(0deg);
-  }
-
-  50% {
-    background-position:
-      80% 10%,
-      90% 40%,
-      85% 90%;
-    transform: scale(1.05) translateY(-2%) skewY(-1deg);
-  }
-
-  100% {
-    background-position:
-      95% 20%,
-      75% 60%,
-      90% 80%;
-    transform: scale(1.1) translateY(-3%) skewY(-2deg);
+    border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+    transform: scale(1.2, 0.8) rotate(0deg);
+    background-position: 100% 0%, 100% 50%, 100% 100%;
   }
 }
