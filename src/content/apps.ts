@@ -3,15 +3,18 @@ export type AppConfig = {
   name: string;
   shortDescription: string;
   supportEmail: string;
+  appStoreUrl?: string;
 };
 
 export const APPS: AppConfig[] = [
   {
     slug: "contraction-timer",
-    name: "Contraction Timer",
+    name: "Contraction Timer: Labor Track",
     shortDescription:
-      "Contraction Timer is a simple labor contraction tracking app designed to help expectant parents record contraction duration and intervals calmly and easily.",
+      "A calm iOS contraction timer that helps expectant parents record contraction duration and interval patterns offline.",
     supportEmail: "hyungjun.dev@proton.me",
+    appStoreUrl:
+      "https://apps.apple.com/us/app/contraction-timer-labor-track/id6761633950",
   },
 ];
 
